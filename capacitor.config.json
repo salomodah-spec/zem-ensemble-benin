@@ -1,0 +1,8 @@
+{
+  "appId": "bj.zemensemble.app",
+  "appName": "Zem-Ensemble Bénin",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14734f">
+<meta name="description" content="Zem-Ensemble Bénin — partagez votre taxi et payez moins.">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+<title>Zem-Ensemble Bénin</title>
+<style>
+:root{--green:#14734f;--green2:#0d5139;--yellow:#ffc928;--bg:#f5f7f3;--card:#fff;--ink:#18332a;--muted:#6c7c74;--line:#e0e8e1;--danger:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px system-ui,-apple-system,Segoe UI,sans-serif;padding-bottom:86px}
+header{background:linear-gradient(135deg,var(--green2),var(--green));color:white;padding:22px 18px 24px;border-radius:0 0 26px 26px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:15px;background:var(--yellow);color:#173c2d;display:grid;place-items:center;font-size:25px;font-weight:900}
+h1{font-size:21px;margin:0}header p{margin:12px 0 0;color:#e0f1e7;font-size:14px}
+main{max-width:620px;margin:auto;padding:18px 15px}.tabs{display:grid;grid-template-columns:1fr 1fr;background:#e5ece6;border-radius:14px;padding:4px;margin:0 0 16px}.tabs button{border:0;border-radius:11px;padding:12px 8px;background:transparent;color:var(--ink);font-weight:700}.tabs button.active{background:white;box-shadow:0 2px 8px #18332a12}
+.panel,.trip,.adminbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 4px 16px #153c2910}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:10px 0 5px}input,select{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;background:#fbfcfa;color:var(--ink);font:inherit;min-width:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{width:100%;border:0;border-radius:13px;padding:14px;background:var(--yellow);color:#3e3000;font:inherit;font-weight:800;margin-top:14px}.btn.green{background:var(--green);color:white}.btn.light{background:#eaf2ec;color:var(--green2)}.btn:disabled{opacity:.5}
+h2{font-size:18px;margin:22px 2px 12px}.muted{color:var(--muted);font-size:13px}.trip-route{font-weight:800;font-size:16px}.trip-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:13px}.price{font-size:22px;font-weight:900;color:var(--green);margin-top:12px}.pill{background:#eaf5ed;color:var(--green2);padding:5px 9px;border-radius:20px;font-size:12px;font-weight:700}.empty{text-align:center;padding:24px;color:var(--muted)}.hidden{display:none!important}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 4px calc(10px + env(safe-area-inset-bottom));z-index:5}
+nav button{border:0;background:none;color:var(--muted);font-size:12px;font-weight:700;display:grid;gap:3px;justify-items:center}nav b{font-size:19px}nav button.active{color:var(--green)}
+.status{padding:10px 12px;border-radius:12px;background:#fff7d9;color:#634c00;font-size:13px;margin-bottom:12px}.error{color:var(--danger)}.adminbox h3{margin:0 0 8px}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">ZE</div><div><h1>Zem-Ensemble Bénin</h1><div style="font-size:12px;color:#d6eee0">Le trajet est plus léger ensemble 🇧🇯</div></div></div><p>Retrouvez des personnes qui font le même trajet que vous et partagez les frais du taxi.</p></header>
+<main>
+<div id="status" class="status">Initialisation de l’application…</div>
+<section id="home">
+<div class="tabs"><button id="tab-search" class="active">🔎 Chercher</button><button id="tab-offer">＋ Proposer</button></div>
+<form id="search-form" class="panel">
+<label>Je pars de</label><input id="s-from" list="places" placeholder="Ex. Fidjrossè" required>
+<label>Je vais à</label><input id="s-to" list="places" placeholder="Ex. Dantokpa" required>
+<button class="btn" type="submit">Trouver un trajet</button>
+</form>
+<form id="offer-form" class="panel hidden">
+<label>Vous êtes</label><select id="role"><option value="pax">Passager</option><option value="pro">Chauffeur / agence</option></select>
+<label>Départ</label><input id="o-from" list="places" required placeholder="Lieu de départ">
+<label>Destination</label><input id="o-to" list="places" required placeholder="Lieu d’arrivée">
+<div class="grid"><div><label>Date</label><input id="o-date" type="date" required></div><div><label>Heure</label><input id="o-time" type="time" value="08:00" required></div></div>
+<div class="grid"><div><label id="fare-label">Prix total du taxi (FCFA)</label><input id="fare" type="number" min="100" step="50" required placeholder="3000"></div><div><label>Places</label><input id="seats" type="number" min="2" max="4" value="4" required></div></div>
+<div class="grid"><div><label>Votre prénom</label><input id="name" required placeholder="Prénom"></div><div><label>WhatsApp</label><input id="phone" type="tel" required placeholder="+229 01…"></div></div>
+<button class="btn" type="submit">Publier mon trajet</button>
+</form>
+<h2 id="results-title">Trajets disponibles</h2><div id="trips"><div class="empty">Chargement des trajets…</div></div>
+</section>
+<section id="profile" class="hidden">
+<h2>Mon profil</h2><div class="panel"><label>Prénom</label><input id="profile-name" placeholder="Votre prénom"><label>Numéro WhatsApp</label><input id="profile-phone" placeholder="+229…"><button class="btn green" id="save-profile">Enregistrer mon profil</button></div>
+<div class="panel"><h3>Administration</h3><p class="muted">Connexion réservée à l’administrateur autorisé Firebase.</p><label>Email administrateur</label><input id="admin-email" type="email"><label>Mot de passe</label><input id="admin-password" type="password"><button class="btn green" id="admin-login">Se connecter</button><button class="btn light hidden" id="admin-logout">Se déconnecter</button><p id="admin-state" class="muted"></p></div>
+<div id="admin-tools" class="adminbox hidden"><h3>Tableau de bord</h3><p class="muted">Connecté comme administrateur. La création de codes et la gestion des abonnements pourront être ajoutées avec des fonctions Cloud sécurisées.</p></div>
+</section>
+</main>
+<nav><button class="active" id="nav-home"><b>⌂</b>Trajets</button><button id="nav-profile"><b>◉</b>Profil</button></nav>
+<datalist id="places"></datalist>
+<script type="module" src="/app.js"></script>
+</body></html>

@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function admin() { return signedIn() && request.auth.token.admin == true; }
+    match /trips/{tripId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.resource.data.owner == request.auth.uid
+        && request.resource.data.from is string
+        && request.resource.data.to is string
+        && request.resource.data.ts is number
+        && request.resource.data.seats is int
+        && request.resource.data.fare is number;
+      allow update: if signedIn() && (resource.data.owner == request.auth.uid || admin());
+      allow delete: if signedIn() && (resource.data.owner == request.auth.uid || admin());
+      match /riders/{riderId} {
+        allow read: if signedIn();
+        allow create: if signedIn() && riderId == request.auth.uid
+          && request.resource.data.uid == request.auth.uid;
+        allow delete: if signedIn() && (riderId == request.auth.uid || admin());
+        allow update: if signedIn() && (riderId == request.auth.uid || admin());
+      }
+    }
+  }
+}

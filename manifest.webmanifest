@@ -1,0 +1,19 @@
+{
+  "name": "Zem-Ensemble Bénin",
+  "short_name": "Zem-Ensemble",
+  "description": "Partagez votre taxi au Bénin",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f7f3",
+  "theme_color": "#14734f",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
