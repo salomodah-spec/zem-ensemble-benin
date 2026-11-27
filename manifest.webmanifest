@@ -1,19 +1,20 @@
 {
   "name": "Zem-Ensemble Bénin",
   "short_name": "Zem-Ensemble",
-  "description": "Partagez votre taxi au Bénin",
+  "description": "Partagez vos trajets en taxi au Bénin et économisez ensemble.",
   "lang": "fr",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/zem-ensemble-benin/",
+  "scope": "/zem-ensemble-benin/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#f5f7f3",
   "theme_color": "#14734f",
   "icons": [
     {
-      "src": "/icons/icon.svg",
+      "src": "/zem-ensemble-benin/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
