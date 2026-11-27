@@ -3,7 +3,7 @@ import { getAuth, signInAnonymously, signInWithEmailAndPassword, signOut, onAuth
 import { getFirestore, collection, addDoc, doc, setDoc, deleteDoc, onSnapshot, query, where, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 import { Capacitor } from "https://cdn.jsdelivr.net/npm/@capacitor/core@6.1.2/+esm";
 
-const firebaseConfig = {
+apiKey: "REMPLACER_API_KEY",
   apiKey: "AIzaSyAbSDJII3NJlUIExD9MGljoQf2-hKBamjc",
   authDomain: "zem-ensemble-benin.firebaseapp.com",
   projectId: "zem-ensemble-benin",
