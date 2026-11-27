@@ -3,20 +3,13 @@ import { getAuth, signInAnonymously, signInWithEmailAndPassword, signOut, onAuth
 import { getFirestore, collection, addDoc, doc, setDoc, deleteDoc, onSnapshot, query, where, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 import { Capacitor } from "https://cdn.jsdelivr.net/npm/@capacitor/core@6.1.2/+esm";
 
-apiKey: "REMPLACER_API_KEY",
+const firebaseConfig = {
   apiKey: "AIzaSyAbSDJII3NJlUIExD9MGljoQf2-hKBamjc",
   authDomain: "zem-ensemble-benin.firebaseapp.com",
   projectId: "zem-ensemble-benin",
   storageBucket: "zem-ensemble-benin.firebasestorage.app",
   messagingSenderId: "982720625643",
   appId: "1:982720625643:web:58c4e11387e65a617377ae"
-};
-  apiKey: "REMPLACER_API_KEY",
-  authDomain: "REMPLACER_PROJECT.firebaseapp.com",
-  projectId: "REMPLACER_PROJECT",
-  storageBucket: "REMPLACER_PROJECT.appspot.com",
-  messagingSenderId: "REMPLACER_SENDER_ID",
-  appId: "REMPLACER_APP_ID"
 };
 const $=id=>document.getElementById(id);
 const status=$("status");
