@@ -4,6 +4,13 @@ import { getFirestore, collection, addDoc, doc, setDoc, deleteDoc, onSnapshot, q
 import { Capacitor } from "https://cdn.jsdelivr.net/npm/@capacitor/core@6.1.2/+esm";
 
 const firebaseConfig = {
+  apiKey: "AIzaSyAbSDJII3NJlUIExD9MGljoQf2-hKBamjc",
+  authDomain: "zem-ensemble-benin.firebaseapp.com",
+  projectId: "zem-ensemble-benin",
+  storageBucket: "zem-ensemble-benin.firebasestorage.app",
+  messagingSenderId: "982720625643",
+  appId: "1:982720625643:web:58c4e11387e65a617377ae"
+};
   apiKey: "REMPLACER_API_KEY",
   authDomain: "REMPLACER_PROJECT.firebaseapp.com",
   projectId: "REMPLACER_PROJECT",
